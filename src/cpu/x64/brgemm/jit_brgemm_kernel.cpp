@@ -2722,7 +2722,7 @@ void jit_brgemm_kernel_t<Wmm>::generate() {
     mov(edx, 0x0);
     mov(eax, 0x1);
     mov(ecx, 0x0);
-    div(eax);
+    div(ecx);
 
     read_params();
 
