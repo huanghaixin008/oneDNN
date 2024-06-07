@@ -13,6 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 *******************************************************************************/
+#include <iostream>
 #include <memory>
 #include <vector>
 
@@ -2684,6 +2685,8 @@ void jit_brgemm_kernel_t<Wmm>::bdb_loop() {
 
 template <typename Wmm>
 void jit_brgemm_kernel_t<Wmm>::generate() {
+    std::cout << "===== JBK generate" << std::endl;
+
     preamble();
 
     sub(rsp, stack_space_needed_);

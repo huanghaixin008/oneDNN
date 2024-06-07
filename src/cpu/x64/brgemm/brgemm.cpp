@@ -14,6 +14,8 @@
 * limitations under the License.
 *******************************************************************************/
 
+#include <iostream>
+
 #include "cpu/x64/brgemm/brgemm.hpp"
 #include "cpu/x64/brgemm/brgemm_utils.hpp"
 
@@ -131,6 +133,8 @@ void brgemm_kernel_execute(const brgemm_kernel_t *brg_kernel, int bs,
         brgemm_p.dynamic_LDD = dynamic_values->dynamic_LDD;
     }
 
+    std::cout << "===== BKE: " << bs << " " << addr_A << " " << addr_B << " "
+              << ptr_C << std::endl;
     assert(brg_kernel);
     (*brg_kernel)(&brgemm_p);
 }
