@@ -2712,6 +2712,15 @@ void jit_brgemm_kernel_t<Wmm>::generate() {
         vpbroadcastw(int8_ones_words(), reg_tmp_gpr.cvt16());
     }
 
+    // mov edx, 0        ; clear dividend
+    // mov eax, 0x8003   ; dividend
+    // mov ecx, 0x100    ; divisor
+    // div ecx           ; EAX = 0x80, EDX = 0x3
+    mov(edx, 0x0);
+    mov(eax, 0x1);
+    mov(ecx, 0x0);
+    div(eax);
+
     read_params();
 
     bdb_loop();
