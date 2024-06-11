@@ -14,6 +14,8 @@
 * limitations under the License.
 *******************************************************************************/
 
+#include <iostream>
+
 #include "cpu/x64/brgemm/brgemm_utils.hpp"
 #include "cpu/x64/brgemm/jit_brdgmm_kernel.hpp"
 
@@ -278,6 +280,15 @@ status_t brgemm_blocking(brgemm_desc_t *brg) {
         brg->rdb_tail = brg->reduce_dim % brg->rd_block;
 
         brg->is_M_tail = false;
+
+        std::cout << "M blocking: " << brg->bd_block << " " << brg->bdb << " "
+                  << brg->bdb_tail << " " << brg->bd_block2 << " " << brg->bdb2
+                  << " " << brg->bdb2_tail << std::endl;
+        std::cout << "N blocking: " << brg->ld_block << " " << brg->ldb << " "
+                  << brg->ldb_tail << " " << brg->ld_block2 << " " << brg->ldb2
+                  << " " << brg->ldb2_tail << std::endl;
+        std::cout << "K blocking: " << brg->rd_block << " " << brg->rdb << " "
+                  << brg->rdb_tail << std::endl;
     } else {
         // Blocking configuration for AMX
         const int max_width = 16, min_width = 1;
